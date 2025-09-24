@@ -36,6 +36,14 @@ int main () {
         std::cout << "Ingrese su opcion: ";
         std::cin >> opcion;
 
+        while (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+            std::cout << "Ingrese su opcion nuevamente: ";
+            std::cin >> opcion;
+        }
+
         switch (opcion)
         {
         case 1:
@@ -43,6 +51,13 @@ int main () {
 
             std::cout << "Ingrese el codigo del producto a buscar: ";
             std::cin >> producto_buscado;
+            while (std::cin.fail())
+            {
+                std::cin.clear();
+                std::cin.ignore(100, '\n');
+                std::cout << "Ingrese su opcion nuevamente: ";
+                std::cin >> producto_buscado;
+            }
 
             for (int i = 0; i < 100; i++)
             {
@@ -79,6 +94,13 @@ int main () {
 
                 std::cout << "Ingrese su opcion: ";
                 std::cin >> opcion_inventario;
+                while (std::cin.fail())
+                {
+                    std::cin.clear();
+                    std::cin.ignore(100, '\n');
+                    std::cout << "Ingrese su opcion nuevamente: ";
+                    std::cin >> opcion_inventario;
+                }
 
                 switch (opcion_inventario)
                 {
@@ -86,9 +108,10 @@ int main () {
                     std::cout << "Registro de nuevos productos:" << std::endl << std::endl;
                     std::cout << "Ingrese el codigo del producto: ";
                     std::cin >> codigo_volatil;
-                    while (codigo_volatil < 0)
+                    while (codigo_volatil < 0 || std::cin.fail())
                     {
-                        std::cout << std::endl << "El codigo del producto no puede ser negativo" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(100, '\n');
                         std::cout << "Ingrese el codigo del producto nuevamente: ";
                         std::cin >> codigo_volatil;
                     }
@@ -98,18 +121,20 @@ int main () {
 
                     std::cout << "Ingrese la cantidad del producto: ";
                     std::cin >> cantidad_volatil;
-                    while (cantidad_volatil < 0)
+                    while (cantidad_volatil < 0 || std::cin.fail())
                     {
-                        std::cout << std::endl << "La cantidad de productos no puede ser menor a 0" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(100, '\n');
                         std::cout << "Ingrese la cantidad del producto nuevamente: ";
                         std::cin >> cantidad_volatil;
                     }
 
                     std::cout << "Ingrese el precio del producto: ";
                     std::cin >> precio_volatil;
-                    while (precio_volatil < 0)
+                    while (precio_volatil < 0 || std::cin.fail())
                     {
-                        std::cout << std::endl << "El precio no puede ser menor de 0" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(100, '\n');
                         std::cout << "Ingrese el precio del producto nuevamente: ";
                         std::cin >> precio_volatil;
                     }
@@ -129,8 +154,9 @@ int main () {
                     std::cout << "Cambio de productos:" << std::endl << std::endl;
                     std::cout << "Ingrese el codigo del producto a cambiar: ";
                     std::cin >> codigo_volatil;
-                    while (codigo_volatil < 0){
-                        std::cout << std::endl << "No existen productos con codigo negativo" << std::endl;
+                    while (codigo_volatil < 0 || std::cin.fail()){
+                        std::cin.clear();
+                        std::cin.ignore(100, '\n');
                         std::cout << "Ingrese el codigo del producto a cambiar nuevamente: ";
                         std::cin >> codigo_volatil;
                     }
@@ -161,15 +187,24 @@ int main () {
 
                         std::cout << "Ingrese su opcion: ";
                         std::cin >> opcion_cambio;
+                        while (std::cin.fail())
+                        {
+                            std::cin.clear();
+                            std::cin.ignore(100, '\n');
+                            std::cout << "Ingrese su opcion nuevamente: ";
+                            std::cin >> opcion_cambio;
+                        }
 
                         switch (opcion_cambio)
                         {
                         case 1:
                             std::cout << "Ingrese el nuevo codigo: ";
                             std::cin >> codigo_producto[foco_producto_encontrado];
-                            while (codigo_producto[foco_producto_encontrado] < 0)
+
+                            while (codigo_producto[foco_producto_encontrado] < 0 || std::cin.fail() )
                             {
-                                std::cout << std::endl << "El codigo del producto no puede ser negativo" << std::endl;
+                                std::cin.clear();
+                                std::cin.ignore(100, '\n');
                                 std::cout << "Ingrese el codigo del producto nuevamente: ";
                                 std::cin >> codigo_producto[foco_producto_encontrado];
                             }
@@ -183,20 +218,22 @@ int main () {
                         case 3:
                             std::cout << "Ingrese la nueva cantidad: ";
                             std::cin >> cantidad_producto[foco_producto_encontrado];
-                            while (cantidad_producto[foco_producto_encontrado] < 0)
+                            while (cantidad_producto[foco_producto_encontrado] < 0 || std::cin.fail())
                             {
-                                std::cout << std::endl << "La cantidad de productos no puede ser menor a 0" << std::endl;
+                                std::cin.clear();
+                                std::cin.ignore(100, '\n');
                                 std::cout << "Ingrese la cantidad del producto nuevamente: ";
-                                std::cin >> cantidad_volatil;
+                                std::cin >> cantidad_producto[foco_producto_encontrado];
                             }
                             break;
 
                         case 4:
                             std::cout << "Ingrese el nuevo precio: ";
                             std::cin >> precio_producto[foco_producto_encontrado];
-                            while (precio_producto[foco_producto_encontrado] < 0)
+                            while (precio_producto[foco_producto_encontrado] < 0 || std::cin.fail())
                             {
-                                std::cout << std::endl << "El precio no puede ser menor de 0" << std::endl;
+                                std::cin.clear();
+                                std::cin.ignore(100, '\n');
                                 std::cout << "Ingrese el precio del producto nuevamente: ";
                                 std::cin >> precio_producto[foco_producto_encontrado];
                             }
