@@ -21,7 +21,7 @@ int main () {
     {
         //Reseteo de variables
         foco_producto_encontrado = -1;
-        precio_caro = -1;
+        precio_caro = 0;
         opcion_cambio = 0;
 
         //std::cout << "" << std::endl;
@@ -117,7 +117,8 @@ int main () {
                     }
 
                     std::cout << "Ingrese el nombre del producto: ";
-                    std::cin >> nombre_volatil;
+                    std::cin.ignore();
+                    std::getline(std::cin, nombre_volatil);
 
                     std::cout << "Ingrese la cantidad del producto: ";
                     std::cin >> cantidad_volatil;
@@ -166,6 +167,7 @@ int main () {
                         if (codigo_producto[i] == codigo_volatil)
                         {
                             foco_producto_encontrado = i;
+                            opcion_cambio = 1;
                             break;
                         }
                     }
@@ -173,7 +175,7 @@ int main () {
                     if (foco_producto_encontrado == -1)
                     {
                         std::cout << std::endl << "Producto no encontrado" << std::endl;
-                        opcion_cambio = -1;
+                        opcion_cambio = 0;
                     }
                     
 
@@ -212,7 +214,8 @@ int main () {
 
                         case 2:
                             std::cout << "Ingrese el nuevo nombre: ";
-                            std::cin >> nombre_producto[foco_producto_encontrado];
+                            std::cin.ignore();
+                            std::getline(std::cin, nombre_producto[foco_producto_encontrado]);
                             break;
 
                         case 3:
@@ -238,6 +241,9 @@ int main () {
                                 std::cin >> precio_producto[foco_producto_encontrado];
                             }
                             break;
+                        case 0:
+                            std::cout << std::endl << "Saliendo del menu de cambios" << std::endl;
+                            break;
                         
                         default:
                             std::cout << std::endl << "Opcion elegida no valida" << std::endl;
@@ -246,6 +252,10 @@ int main () {
                     };
                     
 
+                    break;
+
+                case 0:
+                    std::cout << std::endl << "Saliendo del menu de inventario" << std::endl;
                     break;
 
                 
@@ -276,7 +286,7 @@ int main () {
 
         case 4:
             std::cout << std::endl << "- Producto mas caro -" << std::endl << std::endl;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < tamanio_maximo; i++)
             {
                 if (precio_caro < precio_producto[i])
                 {
@@ -286,6 +296,10 @@ int main () {
             }
             std::cout << "El producto mas caro es: " << nombre_producto[producto_caro] << " con un precio de $" << precio_producto[producto_caro] << std::endl; 
             
+            break;
+
+        case 0:
+            std::cout << std::endl << "Saliendo del programa" << std::endl;
             break;
         
         default:
